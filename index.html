@@ -30,8 +30,7 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Simpson API</h1>
-
-        <div class="content" id="chuck-norris"></div>
+        <div class="content" id="simpson"></div>
       </div>
     </section>
 
@@ -44,17 +43,18 @@
     <script>
       function fetchSimpsonJSON() {
         // Feel free to download this HTML and edit it, to use another Pokemon ID
-        const simpsonId = 0;
         const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
         axios
           .get(url)
           .then(function (response) {
             return response.data; // response.data instead of response.json() with fetch
           })
-          .then(function (simpsons) {
+          .then(function (simpson) {
             console.log('data decoded from JSON:', simpson);
 
-            const simpsonHtml = `<p><strong>${simpson.quote}</strong></p>`;
+            const simpsonHtml = `<p><strong>${simpson[0].quote}</strong></p>
+            <p><strong>${simpson[0].character}</strong></p>
+            <img src = ${simpson[0].image} />`
             document.querySelector('#simpson').innerHTML = simpsonHtml;
           });
       }
